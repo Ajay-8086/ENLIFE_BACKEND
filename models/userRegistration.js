@@ -41,7 +41,8 @@ const userRegistration = new mongoose.Schema({
     last_Donated_Date:{
         type:Date
     },
+    isVerified:{type:Boolean,default:false}
+},{timestamps:true})
 
-
-
-})
+const user = mongoose.model('signup',userRegistration)
+module.exports = user
