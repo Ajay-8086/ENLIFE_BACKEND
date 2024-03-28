@@ -73,7 +73,7 @@ module.exports = {
                 })
                 await newUser.save()
                 const generateOTP = req.session.generateOTP || Math.floor(1000 + Math.random() * 9000);
-               
+               const hello = 'hgaaao'
                 await sendMail(email, `${generateOTP}`);
                 res.status(200).json('User signup successfull')
               }
