@@ -26,7 +26,7 @@ module.exports = {
                 pin,
                 bloodGroup,
                 last_Donated_Date
-            } =req.body
+            } = req.body
             const userExist  = await userModel.findOne({email})
             if(userExist){
                return res.status(400).json('User already exists Please login')
@@ -72,7 +72,7 @@ module.exports = {
                 last_Donated_Date
                 })
                 await newUser.save()
-                const generateOTP = req.session.generateOTP || Math.floor(1000 + Math.random() * 9000);
+                const generateOTP =  Math.floor(1000 + Math.random() * 9000);
                const hello = 'hgaaao'
                 await sendMail(email, `${generateOTP}`);
                 res.status(200).json('User signup successfull')
