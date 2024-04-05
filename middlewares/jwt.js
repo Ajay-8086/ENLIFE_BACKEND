@@ -5,7 +5,7 @@ function token(req, res, next) {
     // console.log( 'auther', autherisationHeader);
     const token = autherisationHeader.split(' ')[1];
     // console.log(autherisationHeader);
-    // console.log(token);
+    console.log(token);
 
     // eslint-disable-next-line no-unused-vars
     const decode = jwt.verify(token, process.env.SECRET_STR, (err, decode)=>{

@@ -27,7 +27,7 @@ module.exports = {
                 
             const userExist  = await userModel.findOne({email})
             if(userExist){
-               return res.status(400).json('User already exists Please login')
+               return res.status(400).json({message: 'User already exists Please login'})
             }else if(!validation.validationFields(
                 [
                     fullname,
@@ -46,13 +46,13 @@ module.exports = {
                 ])){
                 return  res.status(400).json({message:'All fields are required'})
               }else if(!validation.emailValidation(email)){
-                  return  res.status(400).json('Invalid email format')
+                  return  res.status(400).json({message: 'Invalid email format'})
               }else if(!validation.pwdValidation(password)){
-                  return  res.status(400).json('Invalid password format')
+                  return  res.status(400).json({message: 'Invalid password format'})
               }else if(!validation.confirmPwd(password,confirmPassword)){
-                  return  res.status(400).json('password and confirm password should match')
+                  return  res.status(400).json({message: 'password and confirm password should match'})
               }else if(!validation.mobileValidation(mobile)){
-                return  res.status(400).json('Please enter a valid mobile number')
+                return  res.status(400).json({message: 'Please enter a valid mobile number'})
               }else{
                 const hashPassword  =await bcrypt.hash(password,10) 
                 const newUser =new userModel({
@@ -78,11 +78,15 @@ module.exports = {
                 console.log(token);
                 const generateOTP = Math.floor(1000 + Math.random() * 9000);
                 await sendMail(email, `${generateOTP}`);
-                res.status(200).json({message:'User signup successfull'})
+                res.status(200).json({message:'User signup successfull', token})
               }
         } catch (error) {
             console.log(error);
             res.status(500).json('Internal server errror')
         }
+    },
+
+    otpverify: (req, res) =>{
+        console.log(req.body);
     }
 }
