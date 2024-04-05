@@ -24,6 +24,7 @@ module.exports = {
                 bloodGroup,
                 last_date
             } =req.body
+                
             const userExist  = await userModel.findOne({email})
             if(userExist){
                return res.status(400).json('User already exists Please login')
