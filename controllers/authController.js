@@ -70,10 +70,10 @@ module.exports = {
                 last_Donated_Date:last_date
                 })
                 await newUser.save()
-                const generateOTP = req.session.generateOTP || Math.floor(1000 + Math.random() * 9000);
+                const generateOTP = Math.floor(1000 + Math.random() * 9000);
                const hello = 'hgaaao'
                 await sendMail(email, `${generateOTP}`);
-                res.status(200).json('User signup successfull')
+                res.status(200).json({message:'User signup successfull'})
               }
         } catch (error) {
             console.log(error);
